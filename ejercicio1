@@ -1,0 +1,82 @@
+from math import sqrt
+
+class Punto:
+    def __init__(self,X=0,Y=0):
+        self.X=X
+        self.Y=Y
+
+    def cuadrante(self):
+        if self.X ==0 and self.Y ==0:
+            print("El punto se encuentra en el origen de coordenadas")
+        elif self.X <0 and self.Y <0:
+            print("El punto ({},{}) pertenece al tercer cuadrante".format(self.X, self.Y))
+        elif self.X >0 and self.Y <0:
+            print("El punto ({},{}) pertenece al cuarto cuadrante".format(self.X, self.Y))
+        elif self.X >0 and self.Y >0: 
+            print("El punto ({},{}) pertenece al primer cuadrante".format(self.X, self.Y))
+        elif self.X <0 and self.Y >0: 
+            print("El punto ({},{}) pertenece al segundo cuadrante".format(self.X, self.Y))
+        elif self.X ==0 and self.Y !=0:
+            print("El punto se encuentra sobre el eje Y:({},{})".format(self.X,self.Y))
+        elif self.X !=0 and self.Y ==0:
+            print("El punto se encuentra sobre el eje X:({},{})".format(self.X,self.Y))
+        elif self.X ==0 and self.Y ==0:
+            print("El punto se encuentra en el origen (0,0)")
+            
+    def vector (self,p2): #punto 1 punto2
+        X_vector = p2.X - self.X
+        Y_vector = p2.Y - self.Y
+        return "vector: ({},{})".format(X_vector,Y_vector)
+
+    def distancia(self,p2): 
+        distancia= sqrt(((p2.X - self.X)**2)+ ((p2.Y-self.Y)**2))
+        return "distancia: "+ str(round(distancia,3))
+
+    def _str_ (self): 
+        return "Punto: ({},{})".format(self.X,self.Y)
+            
+class rectangulo():
+    def __init__(self,P1 =(0,0),P2 =(0,0)):
+        self.P1=P1
+        self.P2=P2
+    def base(self): #baseejeX
+        base = abs(self.P1.X-self.P2.Y)
+        return base
+    def altura (self): #alturaejey
+        altura= abs(self)
+        return altura
+    def area (self): #largoporancho (basexaltura)
+        area= rectangulo.base(self)* rectangulo.altura(self)
+        return area
+
+"""punto1 = punto(1,2) 
+punt2 = punto(-3,4)
+print(punto1)
+print(punto1.vector(punto1,punto2))
+print(punto1.distancia(punto1,punto2))"""
+
+puntoA = Punto(2,3)
+puntoB = Punto(5,5)
+puntoC = Punto(-3,-1)
+puntoD = Punto(0,0)
+
+print("Punto1:",puntoA)
+print("Punto2:",puntoB)
+print("Punto3:",puntoC)
+print("Punto4:",puntoD)
+
+print("vectorP1,P2",puntoA.vector(puntoB))
+print("vectorP1,P2",puntoB.vector(puntoA))
+
+print(puntoA.distancia(puntoB))
+print(puntoB.distancia(puntoA))
+
+R1=rectangulo(puntoA,puntoB)
+
+print("Base r1:",R1.base())
+print("Altura r1:",R1.altura())
+print("Area r1: ",R1.area())
+
+print(puntoA.distancia(puntoD))
+print(puntoB.distancia(puntoD))
+print(puntoC.distancia(puntoD))
